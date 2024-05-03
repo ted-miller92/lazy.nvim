@@ -26,13 +26,23 @@
 
 ## ⚡️ Requirements
 
-- Neovim >= **0.8.0** (needs to be built with **LuaJIT**)
+- Neovim >= **0.8.0** (needs to be built with [**LuaJIT**](https://github.com/neovim/neovim/wiki/Building-Neovim/f0a248bbbf7c387e173f3456e624b53e9f7d6f1d))
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/) **_(optional)_**
 
 ## 📦 Installation
 
-You can add the following Lua code to your `init.lua` to bootstrap **lazy.nvim**:
+If you have built Neovim with **LuaJIT**, as mentioned above, `init.lua` is an entry point to configuration options and other plugins. In *nix systems, this file is typically located at `~/.config/nvim/init.lua`. For Windows, this will be located at `~\AppData\Local\nvim\`. This directory structure will be similar to this:
+
+```
+~/.config/nvim
+|--init.lua
+|--lua/
+|  |--config/
+|  |--plugins/
+```
+
+To install **lazy.nvim**, all we need to do is add some code to the `init.lua` file. This will bootstrap the installation. Add the following to `init.lua`:
 
 <!-- bootstrap:start -->
 
@@ -53,16 +63,19 @@ vim.opt.rtp:prepend(lazypath)
 
 <!-- bootstrap:end -->
 
-Next step is to add **lazy.nvim** below the code added in the prior step in `init.lua`:
+The next step is to add **lazy.nvim** below the code you just added to `init.lua`:
 
 ```lua
 require("lazy").setup(plugins, opts)
 ```
+This will load Lazy when Neovim starts. The `plugins` and `opts` arguments are explained in detail later in the documentation, but these are the basic requirements: 
 
 - **plugins**: this should be a `table` or a `string`
   - `table`: a list with your [Plugin Spec](#-plugin-spec)
   - `string`: a Lua module name that contains your [Plugin Spec](#-plugin-spec). See [Structuring Your Plugins](#-structuring-your-plugins)
 - **opts**: see [Configuration](#%EF%B8%8F-configuration) **_(optional)_**
+
+This is an example of what the above statement could look like at the end of the `init.lua` file:
 
 ```lua
 -- Example using a list of specs with the default options
@@ -76,7 +89,15 @@ require("lazy").setup({
 })
 ```
 
+As your list of plugins grows, you can store them in individual files in the `~/.config/nvim/lua/plugins/` directory. Each file should return a lua `table`. Plugins are usually documented with the required table and specifications that are required for Lazy to load them. 
+
 ℹ️ It is recommended to run `:checkhealth lazy` after installation.
+
+## Basic Usage
+
+After installation, you can simply run `:Lazy` in a Neovim window to install, update and check the status of plugins.
+
+![image](LazyVimScreen.png)
 
 ## 🔌 Plugin Spec
 
