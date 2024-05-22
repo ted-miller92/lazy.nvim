@@ -1,5 +1,28 @@
 # Changelog
 
+## [10.20.5](https://github.com/folke/lazy.nvim/compare/v10.20.4...v10.20.5) (2024-05-21)
+
+
+### Bug Fixes
+
+* **checker:** ignore dev plugins ([#1384](https://github.com/folke/lazy.nvim/issues/1384)) ([2e04a0c](https://github.com/folke/lazy.nvim/commit/2e04a0c02c17facd3772c382099215acbe72535b))
+* **git:** force `autocrlf=false`. Fixes [#1055](https://github.com/folke/lazy.nvim/issues/1055) ([d2a4ce2](https://github.com/folke/lazy.nvim/commit/d2a4ce22dc02aa08c176cd7692b5b0ed74e4722b))
+* **help:** get rid of any tbl_flatten or iter flatten code ([56a34a8](https://github.com/folke/lazy.nvim/commit/56a34a825b55e0e30cd9df0e055e428a13afd4aa))
+* **keys:** properly deal with ft list for keys. Fixes [#1448](https://github.com/folke/lazy.nvim/issues/1448) ([82cf974](https://github.com/folke/lazy.nvim/commit/82cf974e0939b3440c4470cbcd8e7869abfe480b))
+* **keys:** properly re-create buffer-local mappings. Fixes [#1448](https://github.com/folke/lazy.nvim/issues/1448) ([39de11a](https://github.com/folke/lazy.nvim/commit/39de11a2fa7f4b91556631c49a673bf3e48bcc16))
+* use vim.iter():flatten():totable() over vim.tbl_flatten ([#1454](https://github.com/folke/lazy.nvim/issues/1454)) ([d039aec](https://github.com/folke/lazy.nvim/commit/d039aecddb414c2df9d295e9182ed217196a2c1c))
+
+## [10.20.4](https://github.com/folke/lazy.nvim/compare/v10.20.3...v10.20.4) (2024-05-12)
+
+
+### Bug Fixes
+
+* **heath:** vim.uv. Fixes [#1412](https://github.com/folke/lazy.nvim/issues/1412) ([481aed7](https://github.com/folke/lazy.nvim/commit/481aed70cc4d8e8a38463fd16edf81a23c153247))
+* **reload:** strings in lua reload ([#1439](https://github.com/folke/lazy.nvim/issues/1439)) ([2fcbcaf](https://github.com/folke/lazy.nvim/commit/2fcbcaf07ab79594f2ba25ebf6f4c47e250c33be))
+* **ui:** add conditional `nvim_get_hl_by_name` for Neovim 0.8.0 ([#1429](https://github.com/folke/lazy.nvim/issues/1429)) ([24234f4](https://github.com/folke/lazy.nvim/commit/24234f47a21ca690de829ea1159b553a733f3968))
+* **ui:** hover now opens repo url when no diff with main. Fixes [#1430](https://github.com/folke/lazy.nvim/issues/1430) ([4084506](https://github.com/folke/lazy.nvim/commit/40845063a2586b725d84d44e41fe2c8737751a30))
+* **ui:** set backdrop filetype to `lazy_backdrop`. Fixes [#1399](https://github.com/folke/lazy.nvim/issues/1399) ([31ddbea](https://github.com/folke/lazy.nvim/commit/31ddbea7c10b6920c9077b66c97951ca8682d5c8))
+
 ## [10.20.3](https://github.com/folke/lazy.nvim/compare/v10.20.2...v10.20.3) (2024-03-28)
 
 

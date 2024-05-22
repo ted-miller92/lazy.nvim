@@ -59,6 +59,7 @@ M.defaults = {
       cmd = " ",
       config = "",
       event = " ",
+      favorite = " ",
       ft = " ",
       init = " ",
       import = " ",
@@ -180,7 +181,7 @@ M.defaults = {
   debug = false,
 }
 
-M.version = "10.20.3" -- x-release-please-version
+M.version = "10.20.5" -- x-release-please-version
 
 M.ns = vim.api.nvim_create_namespace("lazy")
 

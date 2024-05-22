@@ -123,11 +123,6 @@ function M:_add(keys)
         Util.track()
       end
 
-      -- Create the real buffer-local mapping
-      if keys.ft then
-        self:_set(keys, buf)
-      end
-
       if keys.mode:sub(-1) == "a" then
         lhs = lhs .. "<C-]>"
       end
@@ -162,19 +157,24 @@ function M:_add(keys)
   end
 end
 
--- Delete a mapping and create the real global
+-- Delete a mapping and create the real global/buffer-local
 -- mapping when needed
 ---@param keys LazyKeys
 function M:_del(keys)
-  pcall(vim.keymap.del, keys.mode, keys.lhs, {
-    -- NOTE: for buffer-local mappings, we only delete the mapping for the current buffer
-    -- So the mapping could still exist in other buffers
-    buffer = keys.ft and true or nil,
-  })
-  -- make sure to create global mappings when needed
-  -- buffer-local mappings are managed by lazy
-  if not keys.ft then
-    self:_set(keys)
+  -- bufs will be all buffers of the filetype for a buffer-local mapping
+  -- OR `false` for a global mapping
+  local bufs = { false }
+
+  if keys.ft then
+    local ft = type(keys.ft) == "string" and { keys.ft } or keys.ft --[[@as string[] ]]
+    bufs = vim.tbl_filter(function(buf)
+      return vim.tbl_contains(ft, vim.bo[buf].filetype)
+    end, vim.api.nvim_list_bufs())
+  end
+
+  for _, buf in ipairs(bufs) do
+    pcall(vim.keymap.del, keys.mode, keys.lhs, { buffer = buf or nil })
+    self:_set(keys, buf or nil)
   end
 end
 
